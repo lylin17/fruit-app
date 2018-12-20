@@ -1,4 +1,4 @@
-# App Engine Standard Flask Tutorial App
+# Google Cloud Platform App Engine Flask App for Classifying Fruits
 
 [![Open in Cloud Shell][shell_img]][shell_link]
 
