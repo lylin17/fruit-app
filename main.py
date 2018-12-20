@@ -116,6 +116,6 @@ def clear():
 if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
            "\nplease wait until server has fully started *"))
-    load_keras_model()
+    #load_keras_model()
     app.secret_key = 'super secret key'
     app.run(host='127.0.0.1', port=8080)
