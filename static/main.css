@@ -43,7 +43,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: red;
+    background-color: lightgray;
 }
 
 form label {
@@ -68,22 +68,9 @@ form input#file {
   margin: 12px;
 }
  
-form textarea#message {
-  width: 500px;
-  height: 100px;
-  background-color: #fafafa;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-  border: 1px solid #cccccc;
-  margin-bottom: 10px;
-  padding: 5px;
-  font-size: 1.1em;
-}
- 
 form input#submit {
   height:80px;
-  width:100px;
+  width:200px;
   margin: auto;
   display: -webkit-box;
   -webkit-border-radius: 3px; 
