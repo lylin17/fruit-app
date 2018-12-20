@@ -85,7 +85,7 @@ def pred_fruit(model, file):
 app = Flask(__name__)
 # PREDICT_FOLDER = os.path.join('static', 'predict')
 # app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
-load_keras_model()
+#load_keras_model()
 app.secret_key = 'super secret key'
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
