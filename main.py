@@ -96,7 +96,7 @@ def home():
     """Home page of app with form"""
    
     if os.path.exists(filepath): 
-    os.remove(filepath)
+        os.remove(filepath)
     
     # Create form
     form = ReusableForm()        
