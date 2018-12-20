@@ -20,10 +20,10 @@
     <form method=post enctype="multipart/form-data">
 	  {{ form.csrf_token }}
 	  {{ form.hidden_tag() }}
-	  
+      <br><br><br>  
       {{ form.file.label }}<br>
       {{ form.file }}
-	  <br><br><br>
+      <br><br>
       {{ form.submit }}
     </form>
     {% endblock %}
