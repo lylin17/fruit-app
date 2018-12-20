@@ -85,8 +85,7 @@ def pred_fruit(model, file):
 app = Flask(__name__)
 # PREDICT_FOLDER = os.path.join('static', 'predict')
 # app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
-#load_keras_model()
-app.secret_key = 'super secret key'
+
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
 
@@ -117,5 +116,6 @@ def clear():
 if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
            "\nplease wait until server has fully started *"))
-
-    app.run(host='127.0.0.1', port=5000)
+    #load_keras_model()
+    app.secret_key = 'super secret key'
+    app.run(host='127.0.0.1', port=8080)
