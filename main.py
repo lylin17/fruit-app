@@ -22,8 +22,8 @@ def load_keras_model():
     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
     blob = bucket.blob('resnet.h5')
     
-    global model
-    model = load_model(blob.download_as_string())
+    global model  
+    model = load_model(blob)
     global graph
     graph = tf.get_default_graph()
 
