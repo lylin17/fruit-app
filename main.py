@@ -14,7 +14,7 @@ import io
 import os
 import h5py
 #from google.cloud import storage
-import cloudstorage as gcs
+import cloudstorage
 
 def load_keras_model():
     """Load in the pre-trained model"""
@@ -24,7 +24,7 @@ def load_keras_model():
 #     blob = bucket.open('resnets.h5')
     global model    
     filename = '/staging.app-project-226107.appspot.com/resnet.h5'
-    gcs_file = gcs.open(filename)
+    gcs_file = cloudstorage.open(filename)
     model2 = load_model(gcs_file.read())
     gcs_file.close()   
             
