@@ -74,7 +74,7 @@ def pred_fruit(model, file):
     draw = ImageDraw.Draw(new_im)
     new_im.paste(img, (50,50))
     
-    font = ImageFont.load("arial.pil",24)
+    font = ImageFont.load_default()
     #font = ImageFont.truetype("arial.ttf", 24)
     w, h = draw.textsize(text,font)
     draw.text(((244-w)/2+50,310),text,(0,0,0),font=font) 
