@@ -48,7 +48,7 @@ def load_keras_model():
     model2.add(Dense(3,kernel_initializer=Initializer))
     model2.add(Activation('softmax'))
     
-    model2.load_weights(h5py.File(blob.download_as_string()))
+    model2.load_weights(blob.download_as_string())
     
     global graph
     graph = tf.get_default_graph()
