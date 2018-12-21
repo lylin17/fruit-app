@@ -105,7 +105,7 @@ def home():
         # Extract information
         file = request.files['file']
         pred_fruit(model, file)
-        return render_template('prediction.html')          
+        return render_template('prediction.html', output = filepath)          
     
     if request.method == 'GET':    
         return render_template('index.html', form=form)
