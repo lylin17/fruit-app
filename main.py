@@ -20,7 +20,7 @@ def load_keras_model():
     project_id = 'staging.app-project-226107'
     gcs = storage.Client()
     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
-    blob = bucket.blob('resnet.h5')
+    blob = bucket.blob('resnet_weights.h5')
     
     global model
     from keras.applications.resnet50 import preprocess_input, ResNet50
