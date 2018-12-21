@@ -18,9 +18,8 @@ from google.cloud import storage
 def load_keras_model():
     """Load in the pre-trained model"""
     project_id = 'staging.app-project-226107'
-    CLOUD_STORAGE_BUCKET = "%s.appspot.com" % project_id
     gcs = storage.Client()
-    bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
+    bucket = gcs.get_bucket("%s.appspot.com" % project_id)
     blob = bucket.blob('resnet.h5')
     
     global model
