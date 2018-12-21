@@ -21,12 +21,12 @@ def load_keras_model():
     project_id = 'staging.app-project-226107'
     gcs = storage.Client()
     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
-    blob = bucket.get_blob('resnets.h5')
+    blob = bucket.get_blob('resnet.h5')
     
     global model
     h5str = blob.download_as_string()
     model2 = load_model(h5py.File(h5str, 'a'))
- 
+    del h5str
             
     global graph
     graph = tf.get_default_graph()
