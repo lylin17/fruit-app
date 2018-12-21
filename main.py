@@ -19,15 +19,15 @@ import copy
 
 def load_keras_model():
     """Load in the pre-trained model"""
-    project_id = 'staging.app-project-226107'
-    gcs = storage.Client()
-    bucket = gcs.get_bucket("%s.appspot.com" % project_id)
-    blob = bucket.get_blob('resnet.h5')
+#     project_id = 'staging.app-project-226107'
+#     gcs = storage.Client()
+#     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
+#     blob = bucket.get_blob('resnet.h5')
     
     global model
-    h5str = copy.copy(blob.download_as_string())
-    model2 = load_model(h5py.File(h5str, 'a'))
-    del h5str
+    #h5str = copy.copy(blob.download_as_string())
+    model2 = load_model('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5')
+    #del h5str
             
     global graph
     graph = tf.get_default_graph()
