@@ -13,43 +13,21 @@ import tensorflow as tf
 import io
 import os
 import h5py
-from google.cloud import storage
+#from google.cloud import storage
+import cloudstorage as gcs
 
 def load_keras_model():
     """Load in the pre-trained model"""
-    project_id = 'staging.app-project-226107'
-    gcs = storage.Client()
-    bucket = gcs.get_bucket("%s.appspot.com" % project_id)
-    blob = bucket.blob('resnet_weights.h5')
-    
-    global model
-    from keras.applications.resnet50 import preprocess_input, ResNet50
-    model = ResNet50(weights = None, include_top=False, input_shape = (244, 244, 3))
-    
-    from keras.models import Sequential
-    from keras.layers import Activation,Dense,Dropout,Flatten,BatchNormalization
-    from keras.regularizers import l2
-
-    Initializer = 'he_normal'
-    activation = Activation('relu')
-    Regularizer = l2
-    regparam = 5e-3    
-
-    model2 = Sequential()
-    model2.add(model)
-
-    model2.add(Flatten())
-
-    model2.add(Dense(64,kernel_initializer=Initializer,kernel_regularizer=Regularizer(regparam)))
-    model2.add(BatchNormalization(momentum=0.9))
-    model2.add(activation)
-    model2.add(Dropout(0.7,seed=123))
-
-    model2.add(Dense(3,kernel_initializer=Initializer))
-    model2.add(Activation('softmax'))
-    
-    model2.load_weights(blob.download_as_string())
-    
+#     project_id = 'staging.app-project-226107'
+#     gcs = storage.Client()
+#     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
+#     blob = bucket.open('resnets.h5')
+    global model    
+    filename = '/staging.app-project-226107.appspot.com/resnet.h5'
+    gcs_file = gcs.open(filename)
+    model2 = load_model(gcs_file.read())
+    gcs_file.close()   
+            
     global graph
     graph = tf.get_default_graph()
 
