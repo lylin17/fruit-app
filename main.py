@@ -22,8 +22,34 @@ def load_keras_model():
     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
     blob = bucket.blob('resnet.h5')
     
-    global model  
-    model = load_model(h5py.File(blob.download_as_string()))
+    global model
+    from keras.applications.resnet50 import preprocess_input, ResNet50
+    model = ResNet50(weights = None, include_top=False, input_shape = (244, 244, 3))
+    
+    from keras.models import Sequential
+    from keras.layers import Activation,Dense,Dropout,Flatten,BatchNormalization
+    from keras.regularizers import l2
+
+    Initializer = 'he_normal'
+    activation = Activation('relu')
+    Regularizer = l2
+    regparam = 5e-3    
+
+    model2 = Sequential()
+    model2.add(model)
+
+    model2.add(Flatten())
+
+    model2.add(Dense(64,kernel_initializer=Initializer,kernel_regularizer=Regularizer(regparam)))
+    model2.add(BatchNormalization(momentum=0.9))
+    model2.add(activation)
+    model2.add(Dropout(0.7,seed=123))
+
+    model2.add(Dense(3,kernel_initializer=Initializer))
+    model2.add(Activation('softmax'))
+    
+    model2.load_weights(h5py.File(blob.download_as_string()))
+    
     global graph
     graph = tf.get_default_graph()
 
@@ -113,7 +139,7 @@ def home():
     if request.method == 'POST' and form.validate():
         # Extract information
         file = request.files['file']
-        pred_fruit(model, file)
+        pred_fruit(model2, file)
         return render_template('prediction.html', output = filepath)          
     
     if request.method == 'GET':    
