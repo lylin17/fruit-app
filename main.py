@@ -13,6 +13,8 @@ import tensorflow as tf
 import io
 import os
 
+from google.cloud import storage
+
 def load_keras_model():
     """Load in the pre-trained model"""
     global model
@@ -86,6 +88,8 @@ app = Flask(__name__)
 # PREDICT_FOLDER = os.path.join('static', 'predict')
 # app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+project_id = os.environ['app-project-226107']
+CLOUD_STORAGE_BUCKET = "%s.appspot.com" % project_id
 
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
