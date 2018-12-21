@@ -14,20 +14,12 @@ import io
 import os
 import h5py
 from google.cloud import storage
-#import cloudstorage
 from urllib.request import urlretrieve
 
 def load_keras_model():
-    """Load in the pre-trained model"""
-#     project_id = 'staging.app-project-226107'
-#     gcs = storage.Client()
-#     bucket = gcs.get_bucket("%s.appspot.com" % project_id)
-#     blob = bucket.get_blob('resnet.h5')
-    
+    """Load in the pre-trained model"""   
     global model
-    #h5str = copy.copy(blob.download_as_string())
-    model2 = load_model(urlretrieve('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5','resnet2.h5')[0])
-    #del h5str
+    model2 = load_model('resnet2.h5')
             
     global graph
     graph = tf.get_default_graph()
@@ -95,8 +87,6 @@ def pred_fruit(model, file):
 #Flask App
 
 app = Flask(__name__)
-# PREDICT_FOLDER = os.path.join('static', 'predict')
-# app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config["CACHE_TYPE"] = "null"
 
