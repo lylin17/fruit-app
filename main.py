@@ -74,7 +74,7 @@ def pred_fruit(model, file):
     draw = ImageDraw.Draw(new_im)
     new_im.paste(img, (50,50))
     
-    font = ImageFont.truetype(filename=fontpath, size=24)
+    font = ImageFont.truetype(fontpath, size=24)
     w, h = draw.textsize(text,font)
     draw.text(((244-w)/2+50,310),text,(0,0,0),font=font) 
     
@@ -85,6 +85,7 @@ def pred_fruit(model, file):
 app = Flask(__name__)
 # PREDICT_FOLDER = os.path.join('static', 'predict')
 # app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
@@ -114,9 +115,18 @@ def home():
 def clear():
     return redirect(url_for('home'))
 
+# No caching at all for API endpoints.
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '-1'
+    return response
+
 if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
            "\nplease wait until server has fully started *"))
     load_keras_model()
     app.secret_key = 'super secret key'
-    app.run(host='127.0.0.1', port=8080)
+    app.run(host='127.0.0.1', port=5000)

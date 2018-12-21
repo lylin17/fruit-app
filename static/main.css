@@ -56,7 +56,7 @@ form label {
 }
  
 form input#file {
-  height: 50px;
+  height: 35px;
   width: 400px;
   background-color: #fafafa;
   -webkit-border-radius: 3px;
