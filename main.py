@@ -25,7 +25,7 @@ def load_keras_model():
     blob = bucket.get_blob('resnet.h5')
     
     global model
-    h5str = copy.deepcopy(blob.download_as_string())
+    h5str = copy.copy(blob.download_as_string())
     model2 = load_model(h5py.File(h5str, 'a'))
     del h5str
             
