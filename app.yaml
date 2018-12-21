@@ -1,6 +1,6 @@
-runtime: python37
+runtime: python36
 api_version: 1
-threadsafe: true
+#threadsafe: true
 
 # [START handlers]
 handlers:
