@@ -26,7 +26,7 @@ def load_keras_model():
     
     global model
     #h5str = copy.copy(blob.download_as_string())
-    model2 = load_model(urlretrieve('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5','resnet2.h5'))
+    model2 = load_model(urlretrieve('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5','resnet2.h5')[0])
     #del h5str
             
     global graph
