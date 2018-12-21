@@ -23,7 +23,7 @@ def load_keras_model():
     blob = bucket.blob('resnet.h5')
     
     global model  
-    model = load_model(h5py.File(blob.download_as_string(),'a'))
+    model = load_model(h5py.File(blob.download_as_string()))
     global graph
     graph = tf.get_default_graph()
 
