@@ -19,7 +19,7 @@ from urllib.request import urlretrieve
 def load_keras_model():
     """Load in the pre-trained model"""   
     global model
-    model2 = load_model('resnet2.h5')
+    model = load_model('resnet2.h5')
             
     global graph
     graph = tf.get_default_graph()
@@ -108,7 +108,7 @@ def home():
     if request.method == 'POST' and form.validate():
         # Extract information
         file = request.files['file']
-        pred_fruit(model2, file)
+        pred_fruit(model, file)
         return render_template('prediction.html', output = filepath)          
     
     if request.method == 'GET':    
