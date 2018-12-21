@@ -21,7 +21,7 @@ def load_keras_model():
     CLOUD_STORAGE_BUCKET = "%s.appspot.com" % project_id
     gcs = storage.Client()
     bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
-    blob = bucket.blob('resent.h5')
+    blob = bucket.blob('resnet.h5')
     
     global model
     model = load_model(blob.download_as_string())
@@ -94,6 +94,7 @@ app = Flask(__name__)
 # PREDICT_FOLDER = os.path.join('static', 'predict')
 # app.config['PREDICT_FOLDER'] = PREDICT_FOLDER
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config["CACHE_TYPE"] = "null"
 
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
