@@ -74,7 +74,7 @@ def pred_fruit(model, file):
     draw = ImageDraw.Draw(new_im)
     new_im.paste(img, (50,50))
     
-    font = ImageFont.truetype(filename='arial.ttf', 24)
+    font = ImageFont.truetype(filename=fontpath, 24)
     w, h = draw.textsize(text,font)
     draw.text(((244-w)/2+50,310),text,(0,0,0),font=font) 
     
@@ -88,6 +88,7 @@ app = Flask(__name__)
 
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
+fontpath = os.path.join('static', 'arial.ttf')
 
 # Home page
 @app.route("/", methods=['GET', 'POST'])
