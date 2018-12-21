@@ -12,7 +12,7 @@ from keras.models import load_model
 import tensorflow as tf
 import io
 import os
-
+import h5py
 from google.cloud import storage
 
 def load_keras_model():
@@ -23,7 +23,7 @@ def load_keras_model():
     blob = bucket.blob('resnet.h5')
     
     global model  
-    model = load_model(blob)
+    model = load_model(h5py.File(blob.download_as_string(),'w'))
     global graph
     graph = tf.get_default_graph()
 
