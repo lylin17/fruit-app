@@ -15,7 +15,7 @@ import os
 import h5py
 from google.cloud import storage
 #import cloudstorage
-from urllib.request import urlopen
+from urllib.request import urlretrieve
 
 def load_keras_model():
     """Load in the pre-trained model"""
@@ -26,7 +26,7 @@ def load_keras_model():
     
     global model
     #h5str = copy.copy(blob.download_as_string())
-    model2 = load_model(h5py.File(urlopen('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5').read(),'a'))
+    model2 = load_model(urlretrieve('http://storage.googleapis.com/staging.app-project-226107.appspot.com/resnet.h5'),'resnet2.h5'))
     #del h5str
             
     global graph
