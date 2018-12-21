@@ -129,4 +129,4 @@ if __name__ == "__main__":
            "\nplease wait until server has fully started *"))
     load_keras_model()
     app.secret_key = 'super secret key'
-    app.run(host='127.0.0.1', port=5000)
+    app.run(host='127.0.0.1', port=8080)
