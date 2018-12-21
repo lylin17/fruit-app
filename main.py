@@ -74,7 +74,7 @@ def pred_fruit(model, file):
     draw = ImageDraw.Draw(new_im)
     new_im.paste(img, (50,50))
     
-    font = ImageFont.truetype(filename=fontpath, 24)
+    font = ImageFont.truetype(filename=fontpath, size=24)
     w, h = draw.textsize(text,font)
     draw.text(((244-w)/2+50,310),text,(0,0,0),font=font) 
     
