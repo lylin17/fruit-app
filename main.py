@@ -15,6 +15,7 @@ import os
 import h5py
 from google.cloud import storage
 #import cloudstorage
+import copy
 
 def load_keras_model():
     """Load in the pre-trained model"""
@@ -24,7 +25,7 @@ def load_keras_model():
     blob = bucket.get_blob('resnet.h5')
     
     global model
-    h5str = blob.download_as_string()
+    h5str = copy.deepcopy(blob.download_as_string())
     model2 = load_model(h5py.File(h5str, 'a'))
     del h5str
             
