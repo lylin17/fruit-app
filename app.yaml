@@ -9,3 +9,8 @@ handlers:
 - url: /.*
   script: main.app
 # [END handlers]
+
+env_variables:
+    # The app will look for the model file at: gs://MODEL_BUCKET/MODEL_FILENAME
+    MODEL_BUCKET: staging.app-project-226107.appspot.com
+    MODEL_FILENAME: vgg16.pkl
