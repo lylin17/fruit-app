@@ -13,7 +13,7 @@ import tensorflow as tf
 import os
 import io
 import pickle
-#from google.cloud import storage
+from google.cloud import storage
 
 def load_keras_model():
     """Load in the pre-trained model"""   
