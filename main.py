@@ -11,11 +11,22 @@ from keras.applications.vgg16 import preprocess_input
 from keras.models import load_model
 import tensorflow as tf
 import os
+import io
+from google.cloud import storage
 
 def load_keras_model():
     """Load in the pre-trained model"""   
-    global model
-    model = load_model('vgg16.h5')
+    global model   
+
+    client = storage.Client()
+    bucket = client.get_bucket('staging.app-project-226107.appspot.com')
+    blob = bucket.get_blob('vgg16.h5')
+    
+    buf = io.BytesIO()
+    buf.write(blob.download_as_string())
+    buf.seek(0)
+    
+    model = load_model(buf)
             
     global graph
     graph = tf.get_default_graph()
