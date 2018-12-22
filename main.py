@@ -7,19 +7,15 @@ import numpy as np
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw 
-from keras.applications.resnet50 import preprocess_input
+from keras.applications.vgg16 import preprocess_input
 from keras.models import load_model
 import tensorflow as tf
-import io
 import os
-import h5py
-from google.cloud import storage
-from urllib.request import urlretrieve
 
 def load_keras_model():
     """Load in the pre-trained model"""   
     global model
-    model = load_model('resnet2.h5')
+    model = load_model('vgg16.h5')
             
     global graph
     graph = tf.get_default_graph()
@@ -84,11 +80,15 @@ def pred_fruit(model, file):
     
     new_im.save(filepath)
 
+#load model outside app
+load_keras_model()
 #Flask App
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config["CACHE_TYPE"] = "null"
+
+app.secret_key = 'super secret key'
 
 filepath = os.path.join('static', 'predict.png')
 errpath = os.path.join('static', 'error.png')
@@ -127,9 +127,9 @@ def add_header(response):
     response.headers['Expires'] = '0'
     return response
 
+
 if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
            "\nplease wait until server has fully started *"))
-    load_keras_model()
-    app.secret_key = 'super secret key'
-    app.run(host='127.0.0.1', port=8080)
+
+    app.run(host='0.0.0.0', port=5000)
