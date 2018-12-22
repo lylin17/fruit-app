@@ -19,15 +19,11 @@ def load_keras_model():
     """Load in the pre-trained model"""   
     global model   
 
-#     client = storage.Client()
-#     bucket = client.get_bucket('staging.app-project-226107.appspot.com')
-#     blob = bucket.get_blob('vgg16.h5')
-    
-#     buf = io.BytesIO()
-#     buf.write(blob.download_as_string())
-#     buf.seek(0)
+    client = storage.Client()
+    bucket = client.get_bucket('staging.app-project-226107.appspot.com')
+    blob = bucket.get_blob('vgg16.pkl')
 
-    model = pickle.load(open('vgg16.pkl','rb'))
+    model = pickle.loads(blob.download_as_string())
             
     global graph
     graph = tf.get_default_graph()
