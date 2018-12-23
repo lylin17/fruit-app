@@ -1,15 +1,19 @@
 # Flask App for Classifying Fruits
 
-[![Open in Cloud Shell][shell_img]][shell_link]
+[![Fruit App][shell_img]][shell_link]
 
-[shell_img]: http://gstatic.com/cloudssh/images/open-btn.png
-[shell_link]: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/python-docs-samples&page=editor&open_in_editor=appengine/standard/flask/tutorial/README.md
+[shell_img]: https://dl.dropboxusercontent.com/s/d5w4yynxzqar9q5/apple-pear-orange.jpg
+[shell_link]: https://peaora-app.herokuapp.com/
 
-This sample shows how to use [Flask](http://flask.pocoo.org/) to deploy a CNN-based fruit classifier on Googlev Cloud Platform App Engine Standard. Users can upload fruit images and the classifier will output the most probable of Apples, Oranges and Pears and the corresponding probability.
+This project shows how to use [Flask](http://flask.pocoo.org/) to deploy a CNN-based fruit classifier on Heroku. The CNN-model was implemented under the keras framework based on transfer learning from a VGG16 model trained on Imagenet. The app allows users to upload images to the server and returns a prediction of whether the image contains apples, oranges or pears with the associated probability. Files uploaed must be images in a format that is readable by PILLOW (eg. png, jpg, bmp). If an unreadable image or an image with dimension !=3 is uploaded, image read error and image dimension error will be shown respectively. The user can upload a new image using the link at the top left corner. [Click on the fruit image above to launch app]
 
 Before running or deploying this application, install the dependencies using
 [pip](http://pip.readthedocs.io/en/stable/):
 
-    pip install -t lib -r requirements.txt
+    pip install -r requirements.txt
+    
+Run this application using:
+
+    python app.py
 
 
