@@ -22,7 +22,7 @@ Keras-Applications==1.0.6
 Keras-Preprocessing==1.0.5
 Markdown==3.0.1
 MarkupSafe==1.1.0
-numpy==1.15.4
+numpy==1.22.0
 numpydoc==0.8.0
 olefile==0.46
 packaging==18.0
